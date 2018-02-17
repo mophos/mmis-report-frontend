@@ -15,11 +15,11 @@
               </div>
               <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                 <div class="select">
-                  <select name="slStatus" [(ngModel)]="transactionId">
+                  <select name="slStatus">
                     <option value="">
                       <กรุณาเลือกประเภท>
                     </option>
-                    <option *ngFor="let s of issues" [value]="s.transaction_id">{{ s.transaction_name }}</option>
+                    <option></option>
                   </select>
                 </div>
               </div>
@@ -28,11 +28,11 @@
               </div>
               <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                 <div class="select">
-                  <select name="slStatus" [(ngModel)]="transactionId">
+                  <select name="slStatus">
                     <option value="">
                       <สถานะของสัญญา>
                     </option>
-                    <option *ngFor="let s of issues" [value]="s.transaction_id">{{ s.transaction_name }}</option>
+                    <option></option>
                   </select>
                 </div>
               </div>
@@ -42,7 +42,7 @@
                 <label for="dateReceive">ข้อมูลผู้ซื้อ</label>
               </div>
               <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-                <input class="form-control" type="text" name="comment" [(ngModel)]="comment">
+                <input class="form-control" type="text" name="comment">
               </div>
             </div>
             <div class="form-group row">
@@ -50,7 +50,7 @@
                 <label for="dateReceive">ข้อมูลผู้จำหน่าย</label>
               </div>
               <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-                <input class="form-control" type="text" name="comment" [(ngModel)]="comment">
+                <input class="form-control" type="text" name="comment">
               </div>
             </div>
             <div class="form-group row">
@@ -58,7 +58,7 @@
                 <label for="dateReceive">แนบไฟล์</label>
               </div>
               <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-                <input class="form-control" type="text" name="comment" [(ngModel)]="comment">
+                <input class="form-control" type="text" name="comment">
               </div>
               <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12">
                 <button class="btn btn-sm btn-icon btn-primary">
@@ -81,7 +81,7 @@
                 <label for="dateReceive">เลขที่เตรียมสัญญา</label>
               </div>
               <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
-                <input class="form-control" type="text" name="comment" [(ngModel)]="comment">
+                <input class="form-control" type="text" name="comment">
               </div>
             </div>
             <div class="form-group row">
@@ -89,7 +89,7 @@
                 <label for="dateReceive">เลขที่สัญญา</label>
               </div>
               <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
-                <input class="form-control" type="text" name="comment" [(ngModel)]="comment">
+                <input class="form-control" type="text" name="comment">
               </div>
             </div>
             <div class="form-group row">
@@ -97,7 +97,7 @@
                 <label for="dateReceive" class="required">วันที่เริ่ม</label>
               </div>
               <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
-                <my-date-picker-th name="mydate1" [options]="myDatePickerOptions" [(ngModel)]="issueDate" required></my-date-picker-th>
+                <my-date-picker-th name="mydate1" [options]="myDatePickerOptions" required></my-date-picker-th>
               </div>
             </div>
             <div class="form-group row">
@@ -105,7 +105,7 @@
                 <label for="dateReceive" class="required">วันที่สิ้นสุด</label>
               </div>
               <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
-                <my-date-picker-th name="mydate1" [options]="myDatePickerOptions" [(ngModel)]="issueDate" required></my-date-picker-th>
+                <my-date-picker-th name="mydate1" [options]="myDatePickerOptions" required></my-date-picker-th>
               </div>
             </div>
           </section>
@@ -133,11 +133,11 @@
       <!-- <wm-select-receive-unit #unit (onSelect)="editChangeUnit(idx, $event, unit)" [selectedUnitGenericId]="product.unit_generic_id" -->
       <!-- [genericId]="product.generic_id"></wm-select-receive-unit> -->
     </clr-dg-cell>
-    <clr-dg-cell style="line-height: 25px; text-align: right;">{{product.issue_qty*product.conversion_qty | number}} {{product.primary_unit_name}}</clr-dg-cell>
-    <clr-dg-cell style="line-height: 25px; text-align: right;" [ngStyle]="{'color': (product.issue_qty * product.conversion_qty) > product.remain_qty ? 'red' : 'green'}">{{product.remain_qty - (product.issue_qty*product.conversion_qty) | number}}</clr-dg-cell>
+    <clr-dg-cell style="line-height: 25px; text-align: right;"></clr-dg-cell>
+    <clr-dg-cell style="line-height: 25px; text-align: right;"></clr-dg-cell>
     <clr-dg-cell style="text-align: center;">
       <div class="btn-group btn-primary">
-        <button class="btn btn-sm btn-danger wm-small-btn" (click)="removeSelectedProduct(idx)">
+        <button class="btn btn-sm btn-danger wm-small-btn">
           <clr-icon shape="trash"></clr-icon>
         </button>
       </div>
@@ -154,29 +154,26 @@
     </clr-dg-cell>
     <clr-dg-cell>
       <div class="select">
-        <select name="lotNo" [(ngModel)]="lotNo" (change)="changeLots($event)">
-          <option [value]="l.lot_no" *ngFor="let l of lots">{{l.lot_no}} ({{l.expired_date}})</option>
+        <select name="lotNo">
+          <option></option>
         </select>
       </div>
     </clr-dg-cell>
     <clr-dg-cell>
-      <span style="vertical-align: middle; line-height: 25px;">{{expiredDate}}</span>
+      <span style="vertical-align: middle; line-height: 25px;"></span>
     </clr-dg-cell>
     <clr-dg-cell>
-      <input type="text" class="wm-edit-box-number" style="width: 100px;" style="background-color: #FFF9C4" [disabled]="!productId"
-        [(ngModel)]="issueQty" placeholder="">
+      <input type="text" class="wm-edit-box-number" style="width: 100px;" style="background-color: #FFF9C4" placeholder="">
     </clr-dg-cell>
-    <clr-dg-cell style="text-align: right; line-height: 25px;" [ngStyle]="{'color': (issueQty * conversionQty) > remainQty ? 'red' : 'green'}">{{ issueQty*conversionQty | number }}</clr-dg-cell>
-    <clr-dg-cell style="text-align: right; line-height: 25px;">{{ remainQty | number }} {{primaryUnitName}}</clr-dg-cell>
-    <!-- <clr-dg-cell style="text-align: center; line-height: 25px;">{{ primaryUnitName }}</clr-dg-cell> -->
+    <clr-dg-cell style="text-align: right; line-height: 25px;"></clr-dg-cell>
+    <clr-dg-cell style="text-align: right; line-height: 25px;"></clr-dg-cell>
 
     <clr-dg-cell style="text-align: center;">
       <div class="btn-group btn-primary">
-        <button class="btn btn-success btn-sm wm-small-btn" [disabled]="!productId || !issueQty || !primaryUnitId || ((issueQty * conversionQty) > remainQty)"
-          (click)="addProduct()">
+        <button class="btn btn-success btn-sm wm-small-btn">
           เพิ่ม
         </button>
-        <button class="btn btn-danger btn-sm wm-small-btn" (click)="clearForm()">
+        <button class="btn btn-danger btn-sm wm-small-btn">
           ยกเลิก
         </button>
       </div>
@@ -187,7 +184,7 @@
 </clr-datagrid>
 
 <div>
-  <button class="btn btn-success btn-sm" (click)="saveIssue()" [disabled]="isSaving || !transactionId || !issueDate || !products.length || !refDocument">
+  <button class="btn btn-success btn-sm">
     <clr-icon shape="floppy"></clr-icon>
     บันทึกสัญญา
   </button>

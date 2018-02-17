@@ -10,7 +10,8 @@ export class LoginComponent implements OnInit {
 
   username: any;
   password: any;
-
+  isLogging: boolean = false;
+  
   constructor(private router: Router) { }
 
   ngOnInit() {

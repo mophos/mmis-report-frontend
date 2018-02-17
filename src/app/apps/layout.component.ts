@@ -29,5 +29,8 @@ export class LayoutComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
+  goHome() {
+    
+  }
 
 }
