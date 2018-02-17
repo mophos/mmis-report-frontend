@@ -1,0 +1,48 @@
+<clr-main-container>
+  <clr-header class="header-6">
+    <div class="branding" style="padding-left: 0px;">
+      <a class="nav-link">
+        <img src="./assets/images/logo-mmis.png" style="width: 100px; height: 70px; padding-right: 5px;" alt="mmis logo">
+        <span class="title">Contact Management</span>
+      </a>
+    </div>
+    <div class="header-nav">
+      <a class=" nav-link nav-icon" href="javascript://" (click)="goHome()">
+        <clr-icon shape="home"></clr-icon>
+      </a>
+    </div>
+    <div class="header-actions">
+      <clr-dropdown>
+        <button class="nav-text" clrDropdownTrigger>
+          {{fullname}} ({{warehouseId}} - {{ warehouseName }})
+          <clr-icon shape="caret down"></clr-icon>
+        </button>
+        <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
+          <a href="javascript://" (click)="showManualStaff()" clrDropdownItem>คู่มือเจ้าหน้าที่หน่วยเบิก/รพ.สต.</a>
+          <a href="javascript://" (click)="openChangePasswordModal()" clrDropdownItem>เปลี่ยนรหัสผ่าน</a>
+          <a href="javascript://" (click)="logout()" clrDropdownItem>ออกจากระบบ</a>
+        </clr-dropdown-menu>
+      </clr-dropdown>
+    </div>
+  </clr-header>
+
+  <div class="content-container">
+    <div class="content-area">
+      <router-outlet></router-outlet>
+    </div>
+
+    <clr-vertical-nav class="is-collapsed" [clrVerticalNavCollapsible]="collapsible" [(clrVerticalNavCollapsed)]="collapse">
+      <a clrVerticalNavLink routerLink="/apps/new" title="รับสินค้าเข้าคลัง" routerLinkActive="active">
+        <clr-icon clrVerticalNavIcon shape="plus"></clr-icon>
+        สร้างสัญญา
+      </a>
+      <a clrVerticalNavLink routerLink="/apps/contacts" title="รายการสัญญา" routerLinkActive="active">
+        <clr-icon clrVerticalNavIcon shape="folder"></clr-icon>
+        รายการสัญญา
+      </a>
+
+    </clr-vertical-nav>
+
+  </div>
+
+</clr-main-container>

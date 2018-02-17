@@ -1,0 +1,198 @@
+<nav class="breadcrumb">
+  <a class="breadcrumb-item" href="javascript://" routerLink="/apps">หน้าหลัก</a>
+  <span class="breadcrumb-item active">สร้างสัญญา</span>
+</nav>
+
+<div class="row">
+  <div class="col-md-8">
+    <div class="card" style="margin-top: 10px; height: 190px;">
+      <div class="card-block" style="padding: 0px 10px 0px 10px;">
+        <form class="compact" style="padding-top: 0px;">
+          <section class="form-block">
+            <div class="form-group row">
+              <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                <label class="required" for="gForm_1">ประเภทสัญญา</label>
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <div class="select">
+                  <select name="slStatus" [(ngModel)]="transactionId">
+                    <option value="">
+                      <กรุณาเลือกประเภท>
+                    </option>
+                    <option *ngFor="let s of issues" [value]="s.transaction_id">{{ s.transaction_name }}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                <label class="required" for="gForm_1">สถานะ</label>
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <div class="select">
+                  <select name="slStatus" [(ngModel)]="transactionId">
+                    <option value="">
+                      <สถานะของสัญญา>
+                    </option>
+                    <option *ngFor="let s of issues" [value]="s.transaction_id">{{ s.transaction_name }}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                <label for="dateReceive">ข้อมูลผู้ซื้อ</label>
+              </div>
+              <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+                <input class="form-control" type="text" name="comment" [(ngModel)]="comment">
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                <label for="dateReceive">ข้อมูลผู้จำหน่าย</label>
+              </div>
+              <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+                <input class="form-control" type="text" name="comment" [(ngModel)]="comment">
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                <label for="dateReceive">แนบไฟล์</label>
+              </div>
+              <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                <input class="form-control" type="text" name="comment" [(ngModel)]="comment">
+              </div>
+              <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12">
+                <button class="btn btn-sm btn-icon btn-primary">
+                  <clr-icon shape="upload"></clr-icon>
+                </button>
+              </div>
+            </div>
+          </section>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card" style="margin-top: 10px; height: 190px;">
+      <div class="card-block" style="padding: 0px 0px 0px 10px;">
+        <form class="compact" style="padding-top: 0px;">
+          <section class="form-block">
+            <div class="form-group row">
+              <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <label for="dateReceive">เลขที่เตรียมสัญญา</label>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                <input class="form-control" type="text" name="comment" [(ngModel)]="comment">
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <label for="dateReceive">เลขที่สัญญา</label>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                <input class="form-control" type="text" name="comment" [(ngModel)]="comment">
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <label for="dateReceive" class="required">วันที่เริ่ม</label>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                <my-date-picker-th name="mydate1" [options]="myDatePickerOptions" [(ngModel)]="issueDate" required></my-date-picker-th>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <label for="dateReceive" class="required">วันที่สิ้นสุด</label>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                <my-date-picker-th name="mydate1" [options]="myDatePickerOptions" [(ngModel)]="issueDate" required></my-date-picker-th>
+              </div>
+            </div>
+          </section>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<span class="p4">รายชื่อยาและเวชภัณฑ์ในสัญญา</span>
+<clr-datagrid class="grid-order" style="padding-top: 5px;">
+  <clr-dg-column>#</clr-dg-column>
+  <clr-dg-column>ชื่อสินค้า</clr-dg-column>
+  <clr-dg-column>หน่วย</clr-dg-column>
+  <clr-dg-column>จำนวน</clr-dg-column>
+  <clr-dg-column>รวม (บาท)</clr-dg-column>
+  <clr-dg-column></clr-dg-column>
+
+  <clr-dg-row *ngFor="let product of products; let idx = index;">
+    <clr-dg-cell style="line-height: 25px;">{{idx + 1}}</clr-dg-cell>
+    <clr-dg-cell style="line-height: 25px;">{{product.product_name}}</clr-dg-cell>
+    <clr-dg-cell style="line-height: 25px;">{{product.warehouse_name}}</clr-dg-cell>
+    <clr-dg-cell style="line-height: 25px; text-align: center;">{{product.lot_no}}</clr-dg-cell>
+    <clr-dg-cell style="line-height: 25px;">{{product.expired_date}}</clr-dg-cell>
+    <clr-dg-cell>
+      <!-- <wm-select-receive-unit #unit (onSelect)="editChangeUnit(idx, $event, unit)" [selectedUnitGenericId]="product.unit_generic_id" -->
+      <!-- [genericId]="product.generic_id"></wm-select-receive-unit> -->
+    </clr-dg-cell>
+    <clr-dg-cell style="line-height: 25px; text-align: right;">{{product.issue_qty*product.conversion_qty | number}} {{product.primary_unit_name}}</clr-dg-cell>
+    <clr-dg-cell style="line-height: 25px; text-align: right;" [ngStyle]="{'color': (product.issue_qty * product.conversion_qty) > product.remain_qty ? 'red' : 'green'}">{{product.remain_qty - (product.issue_qty*product.conversion_qty) | number}}</clr-dg-cell>
+    <clr-dg-cell style="text-align: center;">
+      <div class="btn-group btn-primary">
+        <button class="btn btn-sm btn-danger wm-small-btn" (click)="removeSelectedProduct(idx)">
+          <clr-icon shape="trash"></clr-icon>
+        </button>
+      </div>
+    </clr-dg-cell>
+  </clr-dg-row>
+
+  <clr-dg-row class="newLine">
+    <clr-dg-cell>&nbsp;</clr-dg-cell>
+    <clr-dg-cell>
+      <!-- <wm-search-product #productSearch (onSelect)="setSelectedProduct($event)"></wm-search-product> -->
+    </clr-dg-cell>
+    <clr-dg-cell>
+      <!-- <wm-select-generic-warehouse #warehouseList (onSelect)="changeWarehouse($event)"></wm-select-generic-warehouse> -->
+    </clr-dg-cell>
+    <clr-dg-cell>
+      <div class="select">
+        <select name="lotNo" [(ngModel)]="lotNo" (change)="changeLots($event)">
+          <option [value]="l.lot_no" *ngFor="let l of lots">{{l.lot_no}} ({{l.expired_date}})</option>
+        </select>
+      </div>
+    </clr-dg-cell>
+    <clr-dg-cell>
+      <span style="vertical-align: middle; line-height: 25px;">{{expiredDate}}</span>
+    </clr-dg-cell>
+    <clr-dg-cell>
+      <input type="text" class="wm-edit-box-number" style="width: 100px;" style="background-color: #FFF9C4" [disabled]="!productId"
+        [(ngModel)]="issueQty" placeholder="">
+    </clr-dg-cell>
+    <clr-dg-cell style="text-align: right; line-height: 25px;" [ngStyle]="{'color': (issueQty * conversionQty) > remainQty ? 'red' : 'green'}">{{ issueQty*conversionQty | number }}</clr-dg-cell>
+    <clr-dg-cell style="text-align: right; line-height: 25px;">{{ remainQty | number }} {{primaryUnitName}}</clr-dg-cell>
+    <!-- <clr-dg-cell style="text-align: center; line-height: 25px;">{{ primaryUnitName }}</clr-dg-cell> -->
+
+    <clr-dg-cell style="text-align: center;">
+      <div class="btn-group btn-primary">
+        <button class="btn btn-success btn-sm wm-small-btn" [disabled]="!productId || !issueQty || !primaryUnitId || ((issueQty * conversionQty) > remainQty)"
+          (click)="addProduct()">
+          เพิ่ม
+        </button>
+        <button class="btn btn-danger btn-sm wm-small-btn" (click)="clearForm()">
+          ยกเลิก
+        </button>
+      </div>
+    </clr-dg-cell>
+  </clr-dg-row>
+  <clr-dg-footer>มูลค่า
+    <span class="p4">5,000</span> บาท | {{products.length}} รายการ</clr-dg-footer>
+</clr-datagrid>
+
+<div>
+  <button class="btn btn-success btn-sm" (click)="saveIssue()" [disabled]="isSaving || !transactionId || !issueDate || !products.length || !refDocument">
+    <clr-icon shape="floppy"></clr-icon>
+    บันทึกสัญญา
+  </button>
+  <button class="btn btn-danger btn-sm" [routerLink]="['/admin/issues']">
+    <clr-icon shape="home"></clr-icon>
+    กลับหน้าหลัก
+  </button>
+</div>
