@@ -59,7 +59,7 @@
                 <input class="form-control" disabled type="text" name="vendorId" [(ngModel)]="vendorId">
               </div>
               <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                <cm-search-vendors #searchVendors [labelerType]="V" (onChange)="onChangeVendor($event)" (onSelect)="onSelectVendor($event)"></cm-search-vendors>
+                <cm-search-vendors #searchVendors labelerType="V" (onChange)="onChangeVendor($event)" (onSelect)="onSelectVendor($event)"></cm-search-vendors>
               </div>
             </div>
           </section>
