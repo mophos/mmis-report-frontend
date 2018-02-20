@@ -14,6 +14,7 @@ import { AuthModule } from '../auth/auth.module';
 import { DirectivesModule } from '../directives/directives.module';
 import { PipesModule } from '../pipes/pipes.module';
 import { ModalsModule } from '../modals/modals.module';
+import { AuthGuard } from '../auth-guard.service';
 
 @NgModule({
   imports: [
@@ -32,6 +33,10 @@ import { ModalsModule } from '../modals/modals.module';
     ContractComponent,
     NewComponent
   ],
-  providers: [ContractService, AlertService]
+  providers: [
+    ContractService,
+    AlertService,
+    AuthGuard
+  ]
 })
 export class AppsModule { }

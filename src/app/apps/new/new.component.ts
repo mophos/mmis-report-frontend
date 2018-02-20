@@ -38,7 +38,7 @@ export class NewComponent implements OnInit {
   };
 
   contractId: any;
-
+  isApproved: boolean = false;
   isSaving = false;
   loading = false;
   token: any = null;
@@ -48,6 +48,7 @@ export class NewComponent implements OnInit {
   statusId: any = null;
   startDate: any;
   endDate: any;
+  updatedDate: any;
   buyerName: any;
   buyerPosition: any;
   vendorId: any;
@@ -57,6 +58,7 @@ export class NewComponent implements OnInit {
   bidTypeId: any;
   bgTypeId: any;
   contractNo: any;
+  prepareNo: any;
 
   selectedProductId: any;
   selectedGenericId: any;
@@ -153,9 +155,9 @@ export class NewComponent implements OnInit {
         this.bgTypeId = detail.bgtype_id;
         this.vendorId = detail.labeler_id;
         this.searchVendors.setDefault(detail.labeler_name);
-
+        this.prepareNo = detail.prepare_no;
         this.statusId = detail.status_id;
-        this.startDate = detail.start_date ? {
+        this.startDate = moment(detail.start_date).isValid() ? {
           date: {
             year: moment(detail.start_date).get('year'),
             month: moment(detail.start_date).get('month') + 1,
@@ -168,7 +170,7 @@ export class NewComponent implements OnInit {
               day: moment().get('date')
             }  
         };
-        this.endDate = detail.end_date ? {
+        this.endDate = moment(detail.end_date).isValid() ? {
           date: {
             year: moment(detail.end_date).get('year'),
             month: moment(detail.end_date).get('month') + 1,
@@ -180,7 +182,10 @@ export class NewComponent implements OnInit {
               month: moment().add(1, 'm').get('month') + 1,
               day: moment().add(1, 'm').get('date')
             }  
-        };
+          };
+        
+        this.updatedDate = detail.last_updated;
+
       } else {
         this.alertService.error('ไม่พบรายละเอียดการทำสัญญา');
       }
@@ -305,6 +310,7 @@ export class NewComponent implements OnInit {
   }
 
   onChangeBgType(event: BudgetType) {
+    console.log(event);
     this.bgTypeId = event ? event.bgtype_id : null;
   }
 
@@ -322,7 +328,7 @@ export class NewComponent implements OnInit {
   // save contract
   saveContract() {
     if (this.bidTypeId && this.bgTypeId && this.buyerName && this.buyerPosition
-      && this.statusId && this.startDate && this.endDate && this.vendorId && this.products.length) {
+      && this.startDate && this.endDate && this.vendorId && this.products.length) {
       this.alertService.confirm('ต้องการบันทึกข้อมูล ใช่หรือไม่?')
         .then(async () => {
           try {
@@ -334,13 +340,14 @@ export class NewComponent implements OnInit {
               `${this.endDate.date.year}-${this.endDate.date.month}-${this.endDate.date.day}` : null;
             
             contract.bidTypeId = this.bidTypeId;
-            contract.bgtypeId = this.bgTypeId;
+            contract.bgTypeId = this.bgTypeId;
             contract.vendorId = this.vendorId;
-            contract.statusId = this.statusId;
+            // contract.statusId = this.statusId;
             // contract.remark;
             contract.contractNo = this.contractNo;
             contract.buyerName = this.buyerName;
             contract.buyerPosition = this.buyerPosition;
+            contract.isApproved = this.isApproved ? 'Y' : 'N';
 
             let rs: any;
             if (this.contractId) {
@@ -363,5 +370,24 @@ export class NewComponent implements OnInit {
       this.loading = false;
       this.alertService.error('กรุณาระบุข้อมูลให้ครบถ้วน');
     }
+  }
+
+  cancelContract(contract: any) {
+    this.alertService.confirm(`ต้องการยกเลิกสัญญา เลขที่เตรียม ${this.prepareNo} ใช่หรือไม่?`)
+      .then(async () => {
+        this.cmLoading.show();
+        try {
+          let rs: any = await this.contractService.cancelContract(this.contractId);
+          this.cmLoading.hide();
+          if (rs.ok) {
+            this.router.navigate(['/apps/contracts']);
+          } else {
+            this.alertService.error(rs.error);
+          }
+        } catch (error) {
+          this.cmLoading.hide();
+          this.alertService.error(JSON.stringify(error));
+        }
+      }).catch(() => { });
   }
 }

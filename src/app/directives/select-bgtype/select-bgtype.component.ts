@@ -55,7 +55,7 @@ export class SelectBgtypeComponent implements OnInit {
   }
 
   setSelected(event: any) {
-    const idx = _.findIndex(this.items, { status_id: +event.target.value });
+    const idx = _.findIndex(this.items, { bgtype_id: +event.target.value });
     if (idx > -1) {
       this.onChange.emit(this.items[idx]);
     }

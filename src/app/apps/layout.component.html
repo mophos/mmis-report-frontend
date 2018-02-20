@@ -3,7 +3,7 @@
     <div class="branding" style="padding-left: 0px;">
       <a class="nav-link">
         <img src="./assets/images/logo-mmis.png" style="width: 100px; height: 70px; padding-right: 5px;" alt="mmis logo">
-        <span class="title">Contact Management</span>
+        <span class="title">Contract Management</span>
       </a>
     </div>
     <div class="header-nav">
@@ -32,15 +32,14 @@
     </div>
 
     <clr-vertical-nav class="is-collapsed" [clrVerticalNavCollapsible]="collapsible" [(clrVerticalNavCollapsed)]="collapse">
-      <a clrVerticalNavLink routerLink="/apps/new" title="รับสินค้าเข้าคลัง" routerLinkActive="active">
-        <clr-icon clrVerticalNavIcon shape="plus"></clr-icon>
-        สร้างสัญญา
-      </a>
       <a clrVerticalNavLink routerLink="/apps/contracts" title="รายการสัญญา" routerLinkActive="active">
         <clr-icon clrVerticalNavIcon shape="folder"></clr-icon>
         รายการสัญญา
       </a>
-
+      <a clrVerticalNavLink routerLink="/apps/new" title="สร้างสัญญาใหม่" routerLinkActive="active">
+        <clr-icon clrVerticalNavIcon shape="plus"></clr-icon>
+        สร้างสัญญา
+      </a>
     </clr-vertical-nav>
 
   </div>

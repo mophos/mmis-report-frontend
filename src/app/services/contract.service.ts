@@ -26,8 +26,8 @@ export class ContractService {
     return rs.json();
   }
 
-  async getContractList(limit: number, offset: number, query: any) {
-    let rs: any = await this.authHttp.get(`${this.url}/contracts?limit=${limit}&offset=${offset}&query=${query}`).toPromise();
+  async getContractList(limit: number, offset: number, query: any, status: any) {
+    let rs: any = await this.authHttp.get(`${this.url}/contracts?limit=${limit}&offset=${offset}&query=${query}&status=${status}`).toPromise();
     return rs.json();
   }
 
@@ -38,6 +38,16 @@ export class ContractService {
 
   async getContractDetail(contractId: any) {
     let rs: any = await this.authHttp.get(`${this.url}/contracts/detail/${contractId}`).toPromise();
+    return rs.json();
+  }
+
+  async cancelContract(contractId: any) {
+    let rs: any = await this.authHttp.delete(`${this.url}/contracts/${contractId}/cancel`).toPromise();
+    return rs.json();
+  }
+
+  async approveContract(contractId: any) {
+    let rs: any = await this.authHttp.put(`${this.url}/contracts/${contractId}/approved`, {}).toPromise();
     return rs.json();
   }
 }
