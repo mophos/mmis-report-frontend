@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LayoutComponent } from './layout.component';
-import { ContactComponent } from './contact/contact.component';
+import { ContractComponent } from './contract/contract.component';
 import { NewComponent } from './new/new.component';
 
 const routes: Routes = [
   {
     path: 'apps', component: LayoutComponent,
     children: [
-      { path: '', redirectTo: 'contacts', pathMatch: 'full' },
+      { path: '', redirectTo: 'contracts', pathMatch: 'full' },
       { path: 'new', component: NewComponent },
-      { path: 'contacts', component: ContactComponent }
+      { path: ':contractId/edit', component: NewComponent },
+      { path: 'contracts', component: ContractComponent }
     ]
-  },
-  { path: '**', redirectTo: 'page-not-found' }
+  }
 ];
 
 @NgModule({

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoginService } from '../services/login.service';
+import { AlertService } from '../services/alert.service';
 
 @Component({
   selector: 'cm-login',
@@ -12,16 +14,31 @@ export class LoginComponent implements OnInit {
   password: any;
   isLogging: boolean = false;
   
-  constructor(private router: Router) { }
+  constructor(private router: Router, private loginService: LoginService, private alertService: AlertService) { }
 
   ngOnInit() {
   }
 
   enterLogin(event: any) {
-
+    if (event.keyCode === 13) {
+      this.doLogin();
+    }
   }
 
-  doLogin() {
-    this.router.navigate(['/apps']);
+  async doLogin() {
+    if (this.username && this.password) {
+      try {
+        let rs: any = await this.loginService.doLogin(this.username, this.password);
+        if (rs.ok) {
+          let token: any = rs.token || null;
+          sessionStorage.setItem('token', rs.token);
+          this.router.navigate(['/apps']);
+        } else {
+          this.alertService.error(rs.error);
+        }
+      } catch (error) {
+        this.alertService.error();
+      }
+    }
   }
 }

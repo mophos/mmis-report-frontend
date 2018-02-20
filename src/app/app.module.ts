@@ -12,7 +12,7 @@ import { DeninedComponent } from './denined/denined.component';
 import { LoginModule } from './login/login.module';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { environment } from '../environments/environment';
-
+import { HttpModule } from '@angular/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,17 +22,19 @@ import { environment } from '../environments/environment';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    HttpModule,
     ClarityModule.forRoot(),
-    AppsModule,
     LoginModule,
-    AppRoutingModule
+    AppsModule,
+    AppRoutingModule,
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },
     { provide: 'API_URL', useValue: environment.apiUrl },
+    { provide: 'LOGIN_URL', useValue: environment.loginUrl },
     { provide: 'DOC_URL', useValue: environment.docUrl },
     { provide: 'HOME_URL', useValue: environment.homeUrl },
-    { provide: 'REV_PREFIX', useValue: environment.cmPrefix },
+    { provide: 'CM_PRIFIX', useValue: environment.cmPrefix },
 
   ],
   bootstrap: [AppComponent]
