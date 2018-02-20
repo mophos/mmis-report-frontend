@@ -310,7 +310,6 @@ export class NewComponent implements OnInit {
   }
 
   onChangeBgType(event: BudgetType) {
-    console.log(event);
     this.bgTypeId = event ? event.bgtype_id : null;
   }
 
