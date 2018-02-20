@@ -19,7 +19,11 @@ export class LayoutComponent implements OnInit {
   constructor(
     private router: Router,
     @Inject('HOME_URL') private homeUrl: string
-  ) { }
+  ) { 
+    this.token = sessionStorage.getItem('token');
+    let decoded = this.jwtHelper.decodeToken(this.token);
+    this.fullname = decoded.fullname;
+  }
 
   ngOnInit() {
   }
@@ -33,4 +37,7 @@ export class LayoutComponent implements OnInit {
     
   }
 
+  openChangePasswordModal() {
+    
+  }
 }

@@ -27,8 +27,10 @@ export class LoginComponent implements OnInit {
 
   async doLogin() {
     if (this.username && this.password) {
+      this.isLogging = true;
       try {
         let rs: any = await this.loginService.doLogin(this.username, this.password);
+        this.isLogging = false;
         if (rs.ok) {
           let token: any = rs.token || null;
           sessionStorage.setItem('token', rs.token);
@@ -37,7 +39,8 @@ export class LoginComponent implements OnInit {
           this.alertService.error(rs.error);
         }
       } catch (error) {
-        this.alertService.error();
+        this.isLogging = false;
+        this.alertService.error(JSON.stringify(error));
       }
     }
   }
