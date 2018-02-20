@@ -342,8 +342,7 @@ export class NewComponent implements OnInit {
             contract.bidTypeId = this.bidTypeId;
             contract.bgTypeId = this.bgTypeId;
             contract.vendorId = this.vendorId;
-            // contract.statusId = this.statusId;
-            // contract.remark;
+
             contract.contractNo = this.contractNo;
             contract.buyerName = this.buyerName;
             contract.buyerPosition = this.buyerPosition;
