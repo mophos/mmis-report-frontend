@@ -333,6 +333,7 @@ export class NewComponent implements OnInit {
         .then(async () => {
           try {
             this.loading = true;
+            this.cmLoading.show();
             let contract: any = {};
             contract.startDate = this.startDate ?
               `${this.startDate.date.year}-${this.startDate.date.month}-${this.startDate.date.day}` : null;
@@ -355,14 +356,17 @@ export class NewComponent implements OnInit {
             } else {
               rs = await this.contractService.saveContract(contract, this.products);
             }
+
             if (rs.ok) {
               this.router.navigate(['/apps/contracts']);
             } else {
               this.alertService.error(rs.error);
             }
             this.loading = false;
+            this.cmLoading.hide();
           } catch (error) {
             this.loading = false;
+            this.cmLoading.hide();
             this.alertService.error(JSON.stringify(error));
           }
         }).catch(() => { this.loading = false; });
