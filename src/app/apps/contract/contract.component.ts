@@ -27,9 +27,7 @@ export class ContractComponent implements OnInit {
     private router: Router
   ) { }
 
-  ngOnInit() {
-    // this.getContractList();
-  }
+  ngOnInit() { }
 
   async getContractList() {
     try {
