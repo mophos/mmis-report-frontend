@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SelectUnitsComponent } from './select-units/select-units.component';
 import { ClarityModule } from '@clr/angular';
 import { FormsModule } from '@angular/forms';
 import { AgxTypeaheadModule } from '@siteslave/agx-typeahead';
@@ -26,7 +25,6 @@ import { DatagridProductComponent } from './datagrid-product/datagrid-product.co
     AgxTypeaheadModule
   ],
   declarations: [
-    SelectUnitsComponent,
     SearchVendorsComponent,
     SelectTypeComponent,
     SelectStatusComponent,
@@ -40,7 +38,6 @@ import { DatagridProductComponent } from './datagrid-product/datagrid-product.co
     DatagridProductComponent
   ],
   exports: [
-    SelectUnitsComponent,
     SearchVendorsComponent,
     SelectStatusComponent,
     SelectPositionComponent,
