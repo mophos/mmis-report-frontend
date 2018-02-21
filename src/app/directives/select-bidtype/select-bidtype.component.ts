@@ -33,7 +33,7 @@ export class SelectBidtypeComponent implements OnInit {
         this.items = rs.rows;
         if (this.items.length) {
           if (this.selectedId) {
-            const idx = _.findIndex(this.items, { bgtype_id: this.selectedId });
+            const idx = _.findIndex(this.items, { bid_id: this.selectedId });
             if (idx > -1) {
               this.onChange.emit(this.items[idx]);
             } else {
