@@ -6,4 +6,12 @@ export const environment = {
   homeUrl: 'http://demo.mmis.moph.got.th',
   portalUrl: 'http://demo.mmis.moph.go.th/api/portal',
   cmPrefix: 'CM',
+
+  purchasingUrl: '/purchasing',
+  planningUrl: '/planning',
+  inventoryUrl: '/inventory',
+  materialsUrl: '/material',
+  umUrl: '/um',
+  contractsUrl: '/contracts',
+  reportUrl: '/reports',
 };
