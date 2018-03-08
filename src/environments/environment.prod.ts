@@ -1,9 +1,17 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://demo.mmis.moph.go.th/api/cm',
-  docUrl: 'http://demo.mmis.moph.go.th/api/dc',
-  loginUrl: 'http://demo.mmis.moph.got.h/api/um:3004',
-  homeUrl: 'http://demo.mmis.moph.got.th',
-  portalUrl: 'http://demo.mmis.moph.go.th/api/portal',
+  apiUrl: '/api/contracts',
+  docUrl: '/api/document',
+  loginUrl: '/api/um',
+  homeUrl: '/',
+  portalUrl: '/api/portal',
   cmPrefix: 'CM',
+
+  purchasingUrl: '/purchasing',
+  planningUrl: '/planning',
+  inventoryUrl: '/inventory',
+  materialsUrl: '/material',
+  umUrl: '/um',
+  contractsUrl: '/',
+  reportUrl: '/reports',
 };

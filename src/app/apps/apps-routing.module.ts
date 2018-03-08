@@ -1,19 +1,21 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LayoutComponent } from './layout.component';
-import { ContactComponent } from './contact/contact.component';
+import { ContractComponent } from './contract/contract.component';
 import { NewComponent } from './new/new.component';
+import { AuthGuard } from '../auth-guard.service';
 
 const routes: Routes = [
   {
     path: 'apps', component: LayoutComponent,
+    canActivate: [AuthGuard],
     children: [
-      { path: '', redirectTo: 'contacts', pathMatch: 'full' },
+      { path: '', redirectTo: 'contracts', pathMatch: 'full' },
       { path: 'new', component: NewComponent },
-      { path: 'contacts', component: ContactComponent }
+      { path: 'contracts', component: ContractComponent },
+      { path: 'contracts/:contractId/edit', component: NewComponent },
     ]
-  },
-  { path: '**', redirectTo: 'page-not-found' }
+  }
 ];
 
 @NgModule({

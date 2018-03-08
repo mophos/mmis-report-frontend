@@ -11,59 +11,55 @@
           <section class="form-block">
             <div class="form-group row">
               <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
-                <label class="required" for="gForm_1">ประเภทสัญญา</label>
+                <label for="remark" class="required">งบประมาณ</label>
               </div>
               <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                <div class="select">
-                  <select name="slStatus">
-                    <option value="">
-                      <กรุณาเลือกประเภท>
-                    </option>
-                    <option></option>
-                  </select>
-                </div>
+                <cm-select-bgtype [selectedId]="bgTypeId" (onChange)="onChangeBgType($event)"></cm-select-bgtype>
               </div>
               <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
-                <label class="required" for="gForm_1">สถานะ</label>
+                <label for="remark" class="required">วิธีการจัดหา</label>
               </div>
               <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                <div class="select">
-                  <select name="slStatus">
-                    <option value="">
-                      <สถานะของสัญญา>
-                    </option>
-                    <option></option>
-                  </select>
-                </div>
+                <cm-select-bidtype [selectedId]="bidTypeId" (onChange)="onChangeBidType($event)"></cm-select-bidtype>
               </div>
             </div>
             <div class="form-group row">
               <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
-                <label for="dateReceive">ข้อมูลผู้ซื้อ</label>
+                <label class="required" for="slType">ประเภทสัญญา</label>
               </div>
-              <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-                <input class="form-control" type="text" name="comment">
+              <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <cm-select-type (onChange)="onChangeTypes($event)"></cm-select-type>
+              </div>
+              <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                <label for="dateReceive">เลขที่สัญญา</label>
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <input class="form-control" type="text" [(ngModel)]="contractNo" name="contactNo">
               </div>
             </div>
             <div class="form-group row">
               <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
-                <label for="dateReceive">ข้อมูลผู้จำหน่าย</label>
+                <label for="buyerName" class="required">ข้อมูลผู้ซื้อ</label>
               </div>
-              <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-                <input class="form-control" type="text" name="comment">
+              <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <input class="form-control" type="text" name="buyerName" [(ngModel)]="buyerName">
+              </div>
+              <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                <label for="buyerPosition" class="required">ตำแหน่ง</label>
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <input class="form-control" type="text" name="buyerPosition" [(ngModel)]="buyerPosition">
               </div>
             </div>
             <div class="form-group row">
               <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
-                <label for="dateReceive">แนบไฟล์</label>
+                <label for="dateReceive" class="required">ข้อมูลผู้จำหน่าย</label>
               </div>
-              <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-                <input class="form-control" type="text" name="comment">
+              <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                <input class="form-control" disabled type="text" name="vendorId" [(ngModel)]="vendorId">
               </div>
-              <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12">
-                <button class="btn btn-sm btn-icon btn-primary">
-                  <clr-icon shape="upload"></clr-icon>
-                </button>
+              <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                <cm-search-vendors #searchVendors labelerType="V" (onChange)="onChangeVendor($event)" (onSelect)="onSelectVendor($event)"></cm-search-vendors>
               </div>
             </div>
           </section>
@@ -81,31 +77,32 @@
                 <label for="dateReceive">เลขที่เตรียมสัญญา</label>
               </div>
               <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
-                <input class="form-control" type="text" name="comment">
+                <input class="form-control" [(ngModel)]="prepareNo" disabled type="text" name="prepareNo">
               </div>
             </div>
             <div class="form-group row">
               <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                <label for="dateReceive">เลขที่สัญญา</label>
+                <label for="startDate" class="required">วันที่เริ่ม</label>
               </div>
               <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
-                <input class="form-control" type="text" name="comment">
+                <my-date-picker-th name="startDate" [(ngModel)]="startDate" [options]="myDatePickerOptions" required></my-date-picker-th>
               </div>
             </div>
             <div class="form-group row">
               <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                <label for="dateReceive" class="required">วันที่เริ่ม</label>
+                <label for="endDate" class="required">วันที่สิ้นสุด</label>
               </div>
               <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
-                <my-date-picker-th name="mydate1" [options]="myDatePickerOptions" required></my-date-picker-th>
+                <my-date-picker-th name="endDate" [(ngModel)]="endDate" [options]="myDatePickerOptions" required></my-date-picker-th>
               </div>
             </div>
             <div class="form-group row">
               <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                <label for="dateReceive" class="required">วันที่สิ้นสุด</label>
+                <label for="updatedDate">วันที่แก้ไข</label>
               </div>
               <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
-                <my-date-picker-th name="mydate1" [options]="myDatePickerOptions" required></my-date-picker-th>
+                <span style="font-weight: bold; color: #F52F22;">{{ updatedDate | toThaiDateTime}}</span>
+                <!-- <my-date-picker-th name="updatedDate" [(ngModel)]="updatedDate" [options]="myDatePickerOptionsWithTime" required></my-date-picker-th> -->
               </div>
             </div>
           </section>
@@ -116,28 +113,35 @@
 </div>
 <span class="p4">รายชื่อยาและเวชภัณฑ์ในสัญญา</span>
 <clr-datagrid class="grid-order" style="padding-top: 5px;">
-  <clr-dg-column>#</clr-dg-column>
+  <!-- <clr-dg-column style="width: 50px;">#</clr-dg-column> -->
   <clr-dg-column>ชื่อสินค้า</clr-dg-column>
-  <clr-dg-column>หน่วย</clr-dg-column>
-  <clr-dg-column>จำนวน</clr-dg-column>
-  <clr-dg-column>รวม (บาท)</clr-dg-column>
-  <clr-dg-column></clr-dg-column>
+  <clr-dg-column style="width: 180px;">หน่วย</clr-dg-column>
+  <clr-dg-column style="width: 100px;">ราคาต่อหน่วย</clr-dg-column>
+  <clr-dg-column style="width: 100px;">จำนวน</clr-dg-column>
+  <clr-dg-column style="width: 120px;">รวม Base Unit</clr-dg-column>
+  <clr-dg-column style="width: 150px;">รวม (บาท)</clr-dg-column>
+  <clr-dg-column style="width: 130px;"></clr-dg-column>
 
   <clr-dg-row *ngFor="let product of products; let idx = index;">
-    <clr-dg-cell style="line-height: 25px;">{{idx + 1}}</clr-dg-cell>
-    <clr-dg-cell style="line-height: 25px;">{{product.product_name}}</clr-dg-cell>
-    <clr-dg-cell style="line-height: 25px;">{{product.warehouse_name}}</clr-dg-cell>
-    <clr-dg-cell style="line-height: 25px; text-align: center;">{{product.lot_no}}</clr-dg-cell>
-    <clr-dg-cell style="line-height: 25px;">{{product.expired_date}}</clr-dg-cell>
+    <clr-dg-cell>{{idx + 1}}. {{product.product_name}}</clr-dg-cell>
     <clr-dg-cell>
-      <!-- <wm-select-receive-unit #unit (onSelect)="editChangeUnit(idx, $event, unit)" [selectedUnitGenericId]="product.unit_generic_id" -->
-      <!-- [genericId]="product.generic_id"></wm-select-receive-unit> -->
+      <cm-select-unit (onSelect)="onChangeEditUnit($event, product)" [genericId]="product.generic_id" [selectedId]="product.unit_generic_id"></cm-select-unit>
     </clr-dg-cell>
-    <clr-dg-cell style="line-height: 25px; text-align: right;"></clr-dg-cell>
-    <clr-dg-cell style="line-height: 25px; text-align: right;"></clr-dg-cell>
+    <clr-dg-cell>
+      <input type="text" #qty (keyup)="onChangeEditCost(qty.value, product)" cmNumberOnly [value]="product.cost" class="wm-edit-box-number"
+        style="width: 100px;" style="background-color: #FFF9C4" placeholder="">
+    </clr-dg-cell>
+    <clr-dg-cell>
+      <input type="text" #cost (keyup)="onChangeEditQty(cost.value, product)" cmNumberWithoutDot [value]="product.qty" class="wm-edit-box-number"
+        style="width: 100px;" style="background-color: #FFF9C4" placeholder="">
+    </clr-dg-cell>
+    <clr-dg-cell style="text-align: right;">{{product.conversion_qty * product.qty | number}} {{product.primary_unit_name}}</clr-dg-cell>
+    <clr-dg-cell style="text-align: right;">
+      <span class="p4">{{product.qty * product.cost || 0 | number : '1.2-2'}}</span>
+    </clr-dg-cell>
     <clr-dg-cell style="text-align: center;">
       <div class="btn-group btn-primary">
-        <button class="btn btn-sm btn-danger wm-small-btn">
+        <button class="btn btn-sm btn-danger wm-small-btn" (click)="removeProduct(product)">
           <clr-icon shape="trash"></clr-icon>
         </button>
       </div>
@@ -145,51 +149,56 @@
   </clr-dg-row>
 
   <clr-dg-row class="newLine">
-    <clr-dg-cell>&nbsp;</clr-dg-cell>
     <clr-dg-cell>
-      <!-- <wm-search-product #productSearch (onSelect)="setSelectedProduct($event)"></wm-search-product> -->
+      <cm-search-product #searchProduct [vendorId]="vendorId" #productSearch (onSelect)="onSelecteProduct($event)"></cm-search-product>
     </clr-dg-cell>
     <clr-dg-cell>
-      <!-- <wm-select-generic-warehouse #warehouseList (onSelect)="changeWarehouse($event)"></wm-select-generic-warehouse> -->
+      <cm-select-unit #selectUnit (onSelect)="onChangeUnit($event)" [genericId]="selectedGenericId"></cm-select-unit>
     </clr-dg-cell>
     <clr-dg-cell>
-      <div class="select">
-        <select name="lotNo">
-          <option></option>
-        </select>
-      </div>
+      <input type="text" cmNumberOnly [(ngModel)]="selectedCost" class="wm-edit-box-number" style="width: 100px;" style="background-color: #FFF9C4"
+        placeholder="">
     </clr-dg-cell>
     <clr-dg-cell>
-      <span style="vertical-align: middle; line-height: 25px;"></span>
+      <input type="text" cmNumberWithoutDot [(ngModel)]="selectedQty" class="wm-edit-box-number" style="width: 100px;" style="background-color: #FFF9C4"
+        placeholder="">
     </clr-dg-cell>
-    <clr-dg-cell>
-      <input type="text" class="wm-edit-box-number" style="width: 100px;" style="background-color: #FFF9C4" placeholder="">
+    <clr-dg-cell style="text-align: right;">{{selectedConversionQty * selectedQty | number}} {{selectedPrimaryUnitName}}</clr-dg-cell>
+    <clr-dg-cell style="text-align: right;">
+      {{selectedCost * selectedQty || 0 | number: '1.2-2'}}
     </clr-dg-cell>
-    <clr-dg-cell style="text-align: right; line-height: 25px;"></clr-dg-cell>
-    <clr-dg-cell style="text-align: right; line-height: 25px;"></clr-dg-cell>
-
     <clr-dg-cell style="text-align: center;">
       <div class="btn-group btn-primary">
-        <button class="btn btn-success btn-sm wm-small-btn">
+        <button class="btn btn-success btn-sm wm-small-btn" (click)="addProduct()" [disabled]="!selectedProductId || !selectedGenericId || !selectedUnitGenericId || !selectedQty">
           เพิ่ม
         </button>
-        <button class="btn btn-danger btn-sm wm-small-btn">
+        <button class="btn btn-danger btn-sm wm-small-btn" (click)="clearForm()">
           ยกเลิก
         </button>
       </div>
     </clr-dg-cell>
   </clr-dg-row>
-  <clr-dg-footer>มูลค่า
-    <span class="p4">5,000</span> บาท | {{products.length}} รายการ</clr-dg-footer>
+  <clr-dg-footer>รวมเป็นเงิน
+    <span class="p4">{{totalPrice || 0 | number : '1.2-2'}}</span> บาท | จำนวน
+    <span class="p4">{{products.length}}</span> รายการ</clr-dg-footer>
 </clr-datagrid>
 
 <div>
-  <button class="btn btn-success btn-sm">
+  <clr-checkbox [(ngModel)]="isApproved">
+    เปลี่ยนสถานะเป็น <strong>อนุมัติ</strong> หลังจากบันทึก
+  </clr-checkbox>
+  <button class="btn btn-success btn-sm" [disabled]="loading" (click)="saveContract()">
     <clr-icon shape="floppy"></clr-icon>
     บันทึกสัญญา
   </button>
-  <button class="btn btn-danger btn-sm" [routerLink]="['/admin/issues']">
+  <button class="btn btn-danger btn-sm" *ngIf="contractId" (click)="cancelContract(contract)">
+    <clr-icon shape="trash"></clr-icon>
+    ยกเลิกสัญญา
+  </button>
+  <button class="btn btn-outline-danger btn-sm" [disabled]="loading" [routerLink]="['/apps/contracts']">
     <clr-icon shape="home"></clr-icon>
     กลับหน้าหลัก
   </button>
 </div>
+
+<cm-loading #cmLoading></cm-loading>
