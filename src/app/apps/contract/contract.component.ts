@@ -78,7 +78,7 @@ export class ContractComponent implements OnInit {
   }
 
   toggleStatus(status: any) {
-    this.statusCode = status;
+    this.statusCode = status.target.value || 'ALL';
     this.getContractList();
   }
 
@@ -108,6 +108,30 @@ export class ContractComponent implements OnInit {
           this.cmLoading.show();
           try {
             let rs: any = await this.contractService.approveContract(contract.contract_id);
+            this.cmLoading.hide();
+            if (rs.ok) {
+              this.getContractList();
+            } else {
+              this.alertService.error(rs.error);
+            }
+          } catch (error) {
+            this.cmLoading.hide();
+            this.alertService.error(JSON.stringify(error));
+          }
+        }).catch(() => { });
+    } else {
+      this.alertService.error('กรุณาระบุเลขที่สัญญา');
+    }
+    
+  }
+
+  successContract(contract: any) {
+    if (contract.contract_no) {
+      this.alertService.confirm(`ต้องการ สิ้นสุดการทำสัญญา ${contract.prepare_no} ใช่หรือไม่?`)
+        .then(async () => {
+          this.cmLoading.show();
+          try {
+            let rs: any = await this.contractService.successContract(contract.contract_id);
             this.cmLoading.hide();
             if (rs.ok) {
               this.getContractList();

@@ -50,4 +50,10 @@ export class ContractService {
     let rs: any = await this.authHttp.put(`${this.url}/contracts/${contractId}/approved`, {}).toPromise();
     return rs.json();
   }
+
+  async successContract(contractId: any) {
+    let rs: any = await this.authHttp.put(`${this.url}/contracts/${contractId}/success`, {}).toPromise();
+    return rs.json();
+  }
+
 }
