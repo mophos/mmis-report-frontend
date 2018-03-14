@@ -260,7 +260,7 @@ export class NewComponent implements OnInit {
     let idx = _.findIndex(this.products, { product_id: product.product_id });
     if (idx > -1) {
       this.products[idx].unit_generic_id = event ? event.unit_generic_id : null;
-      this.products[idx].cost = event ? event.cost : 0;
+      // this.products[idx].cost = event ? event.cost : 0;
       this.products[idx].conversion_qty = event ? event.qty : 0;
 
       this.countTotal();
