@@ -7,10 +7,10 @@ export class AlertService {
 
   constructor() { }
 
-  error(text: any = null) {
+  error(text: any = null, title: any = '') {
 
     const option: SweetAlertOptions = {
-      title: 'เกิดข้อผิดพลาด',
+      title: title,
       text: text,
       type: 'error',
       confirmButtonText: 'ตกลง'
