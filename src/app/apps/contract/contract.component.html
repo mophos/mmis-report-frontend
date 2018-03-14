@@ -9,36 +9,27 @@
     <button class="btn btn-sm btn-primary btn-icon btn-link" [disabled]="!query" (click)="search()">
       <clr-icon shape="search"></clr-icon>
     </button>
+    <button class="btn btn-sm btn-success" routerLink="/apps/new">
+      + สร้างสัญญาใหม่
+    </button>
   </div>
   <div class="col-md-6">
-
-    <div style="float: right;">
-      <button class="btn btn-sm btn-success" routerLink="/apps/new">
-        + สร้างสัญญาใหม่
-      </button>
-      <div class="btn-group btn-sm">
-        <div class="radio btn">
-          <input type="radio" (click)="toggleStatus('ALL')" [checked]="statusCode === 'ALL'" name="btn-group-demo-radios" id="radio-0">
-          <label for="radio-0">ทั้งหมด</label>
-        </div>
-        <div class="radio btn">
-          <input type="radio" (click)="toggleStatus('PREPARE')" [checked]="statusCode === 'PREPARE'" name="btn-group-demo-radios" id="radio-1">
-          <label for="radio-1">รอดำเนินการ</label>
-        </div>
-        <div class="radio btn">
-          <input type="radio" (click)="toggleStatus('CANCEL')" [checked]="statusCode === 'CANCEL'" name="btn-group-demo-radios" id="radio-2">
-          <label for="radio-2">ยกเลิก</label>
-        </div>
-        <div class="radio btn">
-          <input type="radio" (click)="toggleStatus('APPROVED')" [checked]="statusCode === 'APPROVED'" name="btn-group-demo-radios"
-            id="radio-3">
-          <label for="radio-3">ผ่านการอนุมัติ</label>
+    <section class="form-block">
+      <div class="form-group" style="float: right; padding-top: 10px;">
+        <div class="select" style="width: 200px;">
+          <select (change)="toggleStatus($event)">
+            <option value="ALL" selected>ทั้งหมด</option>
+            <option value="PREPARE">รอดำเนินการ</option>
+            <option value="CANCEL">ยกเลิก</option>
+            <option value="APPROVED">ผ่านการอนุมัติ</option>
+            <option value="SUCCESS">สิ้นสุดการทำสัญญา</option>
+          </select>
         </div>
       </div>
-    </div>
-
+    </section>
   </div>
 </div>
+
 <clr-datagrid (clrDgRefresh)="refresh($event)">
   <clr-dg-column style="width: 150px;">เลขที่เตรียมสัญญา</clr-dg-column>
   <clr-dg-column style="width: 150px;">เลขที่สัญญา</clr-dg-column>
@@ -46,23 +37,28 @@
   <clr-dg-column style="width: 200px;">ระยะเวลา</clr-dg-column>
   <clr-dg-column style="width: 120px;">มูลค่า (บาท)</clr-dg-column>
   <clr-dg-column style="width: 150px;">งบที่ใช้</clr-dg-column>
+  <clr-dg-column style="width: 150px;">สถานะ</clr-dg-column>
   <!-- <clr-dg-column style="width: 150px;">สถานะ</clr-dg-column> -->
   <clr-dg-column style="width: 120px;">ไฟล์แนบ</clr-dg-column>
   <clr-dg-placeholder>ไม่พบรายการ!</clr-dg-placeholder>
 
-  <clr-dg-row *ngFor="let contract of contracts" [ngClass]="{'isError': contract.contract_status==='CANCEL', 'isSuccess': contract.contract_status==='APPROVED'}">
+  <clr-dg-row *ngFor="let contract of contracts" [ngClass]="{'isError': contract.contract_status==='CANCEL'}">
     <clr-dg-action-overflow>
-      <button [disabled]="contract.contract_status==='CANCEL' || contract.contract_status==='APPROVED'" class="action-item" (click)="onEditContract(contract)">
+      <button [disabled]="contract.contract_status==='CANCEL' || contract.contract_status==='SUCCESS' || contract.contract_status==='APPROVED'" class="action-item" (click)="onEditContract(contract)">
         <clr-icon shape="note"></clr-icon>
         แก้ไขสัญญา
       </button>
-      <button [disabled]="contract.contract_status==='CANCEL' || contract.contract_status==='APPROVED'" class="action-item" (click)="approveContract(contract)">
+      <button [disabled]="contract.contract_status==='CANCEL' || contract.contract_status==='SUCCESS' || contract.contract_status==='APPROVED'" class="action-item" (click)="approveContract(contract)">
         <clr-icon shape="check"></clr-icon>
         อนุมัติสัญญา
       </button>
-      <button [disabled]="contract.contract_status==='CANCEL' || contract.contract_status==='APPROVED'" class="action-item" (click)="cancelContract(contract)">
+      <button [disabled]="contract.contract_status==='CANCEL' || contract.contract_status==='SUCCESS' || contract.contract_status==='APPROVED'" class="action-item" (click)="cancelContract(contract)">
         <clr-icon shape="trash" class="is-error"></clr-icon>
         ยกเลิกสัญญา
+      </button>
+      <button [disabled]="contract.contract_status==='CANCEL' || contract.contract_status==='SUCCESS'" class="action-item" (click)="successContract(contract)">
+        <clr-icon shape="check" class="is-success"></clr-icon>
+        สิ้นสุดสัญญา
       </button>
     </clr-dg-action-overflow>
 
@@ -71,9 +67,11 @@
     <clr-dg-cell style="text-align: center;">{{contract.contract_no}}</clr-dg-cell>
     <clr-dg-cell>{{contract.labeler_name}}</clr-dg-cell>
     <clr-dg-cell style="text-align: center;">{{contract.start_date | toThaiDate}} - {{contract.end_date | toThaiDate}}</clr-dg-cell>
-    <clr-dg-cell style="text-align: right;"><strong>{{contract.total_price | number:'1.2-2'}}</strong></clr-dg-cell>
+    <clr-dg-cell style="text-align: right;">
+      <strong>{{contract.total_price | number:'1.2-2'}}</strong>
+    </clr-dg-cell>
     <clr-dg-cell>{{contract.bgtype_name}}</clr-dg-cell>
-    <!-- <clr-dg-cell>{{contract.status_name}}</clr-dg-cell> -->
+    <clr-dg-cell><span style="color: green; font-weight:bold;">{{contract.contract_status}}</span></clr-dg-cell>
     <clr-dg-cell style="text-align: center;"></clr-dg-cell>
   </clr-dg-row>
 
