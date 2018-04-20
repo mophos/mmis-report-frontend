@@ -6,9 +6,7 @@
     "ng": "npx ng",
     "start": "npx ng serve",
     "build": "node --max_old_space_size=8192 ./node_modules/@angular/cli/bin/ng build --target production --environment prod --build-optimizer --base-href=./",
-    "test": "npx ng test",
-    "lint": "npx ng lint",
-    "e2e": "npx ng e2e"
+    "pack:dist": "npx cpx 'dist/**/*' ../mmis-frontend-dist/contract-web"
   },
   "private": true,
   "dependencies": {
@@ -43,11 +41,12 @@
     "@angular/language-service": "^5.2.5",
     "@types/jasmine": "~2.8.3",
     "@types/jasminewd2": "~2.0.2",
-    "@types/node": "~6.0.60",
     "@types/lodash": "^4.14.100",
+    "@types/node": "~6.0.60",
+    "codelyzer": "^4.0.1",
+    "cpx": "^1.5.0",
     "dotenv": "^4.0.0",
     "express": "^4.16.2",
-    "codelyzer": "^4.0.1",
     "jasmine-core": "~2.8.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~2.0.0",
