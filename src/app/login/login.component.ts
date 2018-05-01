@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
       try {
         const rights = accessRight.split(',');
 
-        if (_.indexOf(rights, 'BM_ADMIN') > -1) {
+        if (_.indexOf(rights, 'CM_ADMIN') > -1) {
           this.router.navigate(['apps']);
         } else {
           this.alertService.error('ไม่มีสิทธิ์ในการเข้าถึง กรุณาลองไหม่');
