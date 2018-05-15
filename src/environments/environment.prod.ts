@@ -7,11 +7,11 @@ export const environment = {
   portalUrl: '/api/portal',
   cmPrefix: 'CM',
 
-  purchasingUrl: '/purchasing',
-  planningUrl: '/planning',
-  inventoryUrl: '/inventory',
-  materialsUrl: '/material',
-  umUrl: '/um',
+  purchasingUrl: '/purchasing/#/',
+  planningUrl: '/planning/#/',
+  inventoryUrl: '/inventory/#/',
+  materialsUrl: '/material/#/',
+  umUrl: '/um/#/',
   contractsUrl: '/',
-  reportUrl: '/reports',
+  reportUrl: '/reports/#/',
 };
