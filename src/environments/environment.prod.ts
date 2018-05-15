@@ -3,7 +3,7 @@ export const environment = {
   apiUrl: '/api/contracts',
   docUrl: '/api/document',
   loginUrl: '/api/um',
-  homeUrl: '/',
+  homeUrl: '/#/',
   portalUrl: '/api/portal',
   cmPrefix: 'CM',
 
@@ -12,6 +12,6 @@ export const environment = {
   inventoryUrl: '/inventory/#/',
   materialsUrl: '/material/#/',
   umUrl: '/um/#/',
-  contractsUrl: '/',
+  contractsUrl: '/#/',
   reportUrl: '/reports/#/',
 };
