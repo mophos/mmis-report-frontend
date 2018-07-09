@@ -63,7 +63,7 @@ export class LayoutComponent implements OnInit {
 
   logout() {
     sessionStorage.removeItem('token');
-    this.router.navigate(['/']);
+    location.href = this.homeUrl;
   }
 
   goHome() {
