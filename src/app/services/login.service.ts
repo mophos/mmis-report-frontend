@@ -7,12 +7,27 @@ export class LoginService {
 
   constructor(@Inject('LOGIN_URL') private url: string, private http: Http) { }
 
-  async doLogin(username: any, password: any) {
-    let rs: any = await this.http.post(`${this.url}/login`, {
-      username: username,
-      password: password
-    }).toPromise();
+  doLogin(username: string, password: string, userWarehouseId) {
+    return new Promise((resolve, reject) => {
+      this.http.post(`${this.url}/login`, { username: username, password: password, userWarehouseId: userWarehouseId })
+        .map(res => res.json())
+        .subscribe(data => {
+          resolve(data);
+        }, error => {
+          reject(error);
+        });
+    });
+  }
 
-    return rs.json();
+  searchWarehouse(username: string) {
+    return new Promise((resolve, reject) => {
+      this.http.get(`${this.url}/login/warehouse/search?username=${username}`)
+        .map(res => res.json())
+        .subscribe(data => {
+          resolve(data);
+        }, error => {
+          reject(error);
+        });
+    });
   }
 }

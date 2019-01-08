@@ -1,0 +1,30 @@
+<nav class="breadcrumb">
+  <!-- <a class="breadcrumb-item" href="javascript://" routerLink="/apps/reports">หน้าหลัก</a> -->
+  <span class="breadcrumb-item active">รายงาน</span>
+</nav>
+<div class="row">
+  <div class="col-md-10"></div>
+  <div class="col-md-2" style="text-align: right">
+    <button class="btn btn-success btn-sm" [routerLink]="['/apps/report-new']">
+      <clr-icon shape="plus"></clr-icon>เพิ่มรายงาน
+    </button>
+  </div>
+</div>
+
+<clr-datagrid class="grid-order" style="padding-top: 5px; height: 83%;">
+  <clr-dg-column>หัวข้อ</clr-dg-column>
+  <clr-dg-column>คำอธิบาย</clr-dg-column>
+  <clr-dg-column>#</clr-dg-column>
+  <clr-dg-placeholder>ไม่พบรายการ</clr-dg-placeholder>
+  <clr-dg-row *ngFor="let r of reports; let idx = index">
+    <clr-dg-cell>{{r.report_name}}</clr-dg-cell>
+    <clr-dg-cell>{{r.report_detail}}</clr-dg-cell>
+    <clr-dg-cell><button class="btn btn-sm btn-primary">
+        <clr-icon shape="printer"></clr-icon>
+      </button></clr-dg-cell>
+  </clr-dg-row>
+  <clr-dg-footer>
+    {{pagePo.firstItem + 1}} - {{pagePo.lastItem + 1}} จาก {{pagePo.totalItems}} รายการ
+    <clr-dg-pagination #pagePo [clrDgPageSize]="perPage" [clrDgTotalItems]="reports.length"></clr-dg-pagination>
+  </clr-dg-footer>
+</clr-datagrid>

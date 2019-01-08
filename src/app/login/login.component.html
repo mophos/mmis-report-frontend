@@ -2,12 +2,18 @@
   <div class="login-wrapper">
     <form class="login">
       <label class="title">
-        Contract Management&#174;
+        Report Management&#174;
       </label>
       <div class="login-group">
-        <input (keypress)="enterLogin($event)" autocomplete="off" class="username" [(ngModel)]="username" type="text" name="login_username"
-          placeholder="ชื่อผู้ใช้งาน">
-        <input (keypress)="enterLogin($event)" class="password" [(ngModel)]="password" type="password" name="login_password" placeholder="รหัสผ่าน">
+        <input (keypress)="enterLogin($event)" (keyup)="selectWarehouse($event)" autocomplete="off" class="username"
+          [(ngModel)]="username" type="text" name="login_username" placeholder="ชื่อผู้ใช้งาน">
+        <input (keypress)="enterLogin($event)" class="password" [(ngModel)]="password" type="password" name="login_password"
+          placeholder="รหัสผ่าน">
+        <div class="select">
+          <select [(ngModel)]="userWarehouseId" name="userWarehouseId">
+            <option *ngFor="let w of warehouses" [value]="w.user_warehouse_id">{{w.warehouse_name}}-{{w.warehouse_type}}</option>
+          </select>
+        </div>
         <div style="text-align: center" *ngIf="isLogging">
           <span class="spinner spinner-inline">กรุณารอซักครู่...</span>
           <span>กรุณารอซักครู่...</span>

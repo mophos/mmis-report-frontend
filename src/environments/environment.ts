@@ -1,10 +1,10 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:3021',
-  docUrl: 'http://203.157.156.69/api/document',
-  loginUrl: 'http://203.157.156.69/api/um/',
-  portalUrl: 'http://203.157.156.69/api/portal',
+  apiUrl: 'http://localhost:4008',
+  docUrl: 'http://203.157.102.123/api/document',
+  loginUrl: 'http://203.157.102.123/api/um/',
+  portalUrl: 'http://203.157.102.123/api/portal',
   cmPrefix: 'CM',
 
   homeUrl: '/',

@@ -1,0 +1,103 @@
+<nav class="breadcrumb">
+  <!-- <a class="breadcrumb-item" href="javascript://" routerLink="/apps/reports">หน้าหลัก</a> -->
+  <a class="breadcrumb-item" href="javascript://" routerLink="/apps/reports">รายงาน</a>
+  <span class="breadcrumb-item active">เพิ่มรายงาน</span>
+</nav>
+
+<div class="card">
+  <div class="card-block">
+    <form class="form-block">
+      <div class="row form-group">
+        <div class="col-md-2">
+          <label class="required"> เลือกไฟล์(.jrxml)</label>
+        </div>
+        <div class="col-md-10">
+          <input type="file" accept=".jrxml" name="file" (change)="fileChangeEvent($event)">
+        </div>
+        <div class="col-md-2">
+          <label class="required"> ชื่อรายงาน</label>
+
+        </div>
+        <div class="col-md-10">
+          <input type="text" class="form-control" name="reportName" [(ngModel)]="reportName">
+        </div>
+        <div class="col-md-2">
+          คำอธิบาย
+        </div>
+        <div class="col-md-10">
+          <input type="text" class="form-control" name="reportDetail" [(ngModel)]="reportDetail">
+        </div>
+        <div class="col-md-2">
+          Parameter
+        </div>
+        <div class="col-md-10">
+          <div class="toggle-switch">
+            <input type="checkbox" id="toggle_1" (change)="switchParameter($event)">
+            <label for="toggle_1"></label>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+
+<div class="card">
+  <div class="card-header">
+    <form class="form-block">
+      <div class="row form-group">
+        <div class="col-md-2" style="text-align: right">
+          <label class="required">ชื่อ Parameter</label>
+        </div>
+        <div class="col-md-3">
+          <input type="text" class="form-control" name="parameterName" [(ngModel)]="parameterName">
+        </div>
+        <div class="col-md-2" style="text-align: right">
+          <label class="required">ประเภท</label>
+        </div>
+        <div class="col-md-3">
+          <div class="select">
+            <select [(ngModel)]="parameterType" name="parameterType">
+              <option *ngFor="let i of parameterTypes" [value]="i.parameter_id">{{i.parameter_name}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <button class="btn btn-success" (click)="addParameter()" [disabled]="parameters.length >=5 || !parameterName">
+            เพิ่ม Parameter</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="card-block">
+    <!-- <form class="form-block">
+      <div class="row form-group">
+
+      </div>
+    </form> -->
+    <clr-datagrid class="grid-order" style="padding-top: 5px; height: 83%;">
+      <clr-dg-column [style.width.px]="20">ลำดับ</clr-dg-column>
+      <clr-dg-column>ชื่อ Parameter</clr-dg-column>
+      <clr-dg-column>ประเภท</clr-dg-column>
+      <clr-dg-column>คำอธิบายประเภท</clr-dg-column>
+      <clr-dg-column>#</clr-dg-column>
+      <clr-dg-placeholder>ไม่พบรายการ</clr-dg-placeholder>
+      <clr-dg-row *ngFor="let p of parameters; let idx = index">
+        <clr-dg-cell>{{idx+1}}</clr-dg-cell>
+        <clr-dg-cell>{{p.parameter_name}}</clr-dg-cell>
+        <clr-dg-cell>{{p.parameter_type_name}}</clr-dg-cell>
+        <clr-dg-cell>{{p.parameter_type_detail}}</clr-dg-cell>
+        <clr-dg-cell>
+          <button class="btn btn-sm btn-danger wm-small-btn" (click)="removeParameter(idx)">
+            <clr-icon shape="trash"></clr-icon>
+          </button>
+        </clr-dg-cell>
+      </clr-dg-row>
+    </clr-datagrid>
+  </div>
+  <div class="row" style="padding-left: 20px">
+    <div class="col-md-12">
+      <button class="btn btn-success">บันทึก</button>
+    </div>
+  </div>

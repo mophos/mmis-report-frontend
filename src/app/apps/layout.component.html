@@ -3,19 +3,22 @@
     <div class="branding" style="padding-left: 0px;">
       <a class="nav-link">
         <img src="./assets/images/logo-mmis.png" style="width: 100px; height: 70px; padding-right: 5px;" alt="mmis logo">
-        <span class="title">Contract Management</span>
+        <span class="title">Report Management</span>
       </a>
     </div>
     <div class="header-nav">
-      <a class=" nav-link nav-icon tooltip tooltip-md tooltip-bottom-right" href="javascript://" (click)="goHome()" role="tooltip" aria-haspopup="true">
+      <a class=" nav-link nav-icon tooltip tooltip-md tooltip-bottom-right" href="javascript://" (click)="goHome()"
+        role="tooltip" aria-haspopup="true">
         <clr-icon shape="home"></clr-icon>
         <span class="tooltip-content">Home</span>
       </a>
-      <a href="{{env.purchasingUrl}}" *ngIf="Purchasing" class=" nav-link nav-icon tooltip tooltip-md tooltip-bottom-right" role="tooltip" aria-haspopup="true">
+      <a href="{{env.purchasingUrl}}" *ngIf="Purchasing" class=" nav-link nav-icon tooltip tooltip-md tooltip-bottom-right"
+        role="tooltip" aria-haspopup="true">
         <clr-icon shape="shopping-cart"></clr-icon>
         <span class="tooltip-content">Purchasing</span>
       </a>
-      <a href="{{env.planningUrl}}" *ngIf="Planning" class=" nav-link nav-icon tooltip tooltip-md tooltip-bottom-right" role="tooltip" aria-haspopup="true">
+      <a href="{{env.planningUrl}}" *ngIf="Planning" class=" nav-link nav-icon tooltip tooltip-md tooltip-bottom-right"
+        role="tooltip" aria-haspopup="true">
         <clr-icon shape="event"></clr-icon>
         <span class="tooltip-content">Planning</span>
       </a>
@@ -24,17 +27,25 @@
         <clr-icon shape="data-cluster"></clr-icon>
         <span class="tooltip-content">Inventory</span>
       </a>
-      <a href="{{env.materialsUrl}}" *ngIf="Materials" class=" nav-link nav-icon tooltip tooltip-md tooltip-bottom-right" role="tooltip" aria-haspopup="true">
+      <a href="{{env.materialsUrl}}" *ngIf="Materials" class=" nav-link nav-icon tooltip tooltip-md tooltip-bottom-right"
+        role="tooltip" aria-haspopup="true">
         <clr-icon shape="storage"></clr-icon>
         <span class="tooltip-content">Materials</span>
       </a>
-      <a routerLink="{{env.contractsUrl}}" routerLinkActive="active" class=" nav-link nav-icon tooltip tooltip-md tooltip-bottom-right" role="tooltip" aria-haspopup="true">
+      <a routerLink="{{env.contractsUrl}}" *ngIf="Contracts" class=" nav-link nav-icon tooltip tooltip-md tooltip-bottom-right"
+        role="tooltip" aria-haspopup="true">
         <clr-icon shape="scroll"></clr-icon>
         <span class="tooltip-content">Contracts</span>
       </a>
-      <a href="{{env.umUrl}}" *ngIf="Administrator" class=" nav-link nav-icon tooltip tooltip-md tooltip-bottom-right" role="tooltip" aria-haspopup="true">
+      <a href="{{env.umUrl}}" *ngIf="Administrator" class=" nav-link nav-icon tooltip tooltip-md tooltip-bottom-right"
+        role="tooltip" aria-haspopup="true">
         <clr-icon shape="cog"></clr-icon>
         <span class="tooltip-content">Administrator</span>
+      </a>
+      <a routerLink="{{env.contractsUrl}}" routerLinkActive="active" class=" nav-link nav-icon tooltip tooltip-md tooltip-bottom-right"
+        role="tooltip" aria-haspopup="true">
+        <clr-icon shape="book"></clr-icon>
+        <span class="tooltip-content">Reports</span>
       </a>
     </div>
     <div class="header-actions">
@@ -57,14 +68,14 @@
     </div>
 
     <clr-vertical-nav class="is-collapsed" [clrVerticalNavCollapsible]="collapsible" [(clrVerticalNavCollapsed)]="collapse">
-      <a clrVerticalNavLink routerLink="/apps/contracts" title="รายการสัญญา" routerLinkActive="active">
+      <a clrVerticalNavLink routerLink="/apps/reports" title="รางาน" routerLinkActive="active">
         <clr-icon clrVerticalNavIcon shape="folder"></clr-icon>
-        รายการสัญญา
+        รายงาน
       </a>
-      <a clrVerticalNavLink routerLink="/apps/new" title="สร้างสัญญาใหม่" routerLinkActive="active">
+      <!-- <a clrVerticalNavLink routerLink="/apps/new" title="สร้างสัญญาใหม่" routerLinkActive="active">
         <clr-icon clrVerticalNavIcon shape="plus"></clr-icon>
         สร้างสัญญา
-      </a>
+      </a> -->
     </clr-vertical-nav>
 
   </div>

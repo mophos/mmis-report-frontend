@@ -5,16 +5,16 @@ import { AppsRoutingModule } from './apps-routing.module';
 import { LayoutComponent } from './layout.component';
 import { ClarityModule } from '@clr/angular';
 import { FormsModule } from '@angular/forms';
-import { ContractComponent } from './contract/contract.component';
-import { NewComponent } from './new/new.component';
 import { MyDatePickerTHModule } from 'mydatepicker-th';
-import { ContractService } from '../services/contract.service';
 import { AlertService } from '../services/alert.service';
 import { AuthModule } from '../auth/auth.module';
 import { DirectivesModule } from '../directives/directives.module';
 import { PipesModule } from '../pipes/pipes.module';
 import { ModalsModule } from '../modals/modals.module';
 import { AuthGuard } from '../auth-guard.service';
+import { ReportsComponent } from './reports/reports.component';
+import { ReportService } from '../services/report.service';
+import { ReportNewComponent } from './report-new/report-new.component';
 
 @NgModule({
   imports: [
@@ -30,13 +30,13 @@ import { AuthGuard } from '../auth-guard.service';
   ],
   declarations: [
     LayoutComponent,
-    ContractComponent,
-    NewComponent
+    ReportsComponent,
+    ReportNewComponent
   ],
   providers: [
-    ContractService,
     AlertService,
-    AuthGuard
+    AuthGuard,
+    ReportService
   ]
 })
 export class AppsModule { }

@@ -1,19 +1,18 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LayoutComponent } from './layout.component';
-import { ContractComponent } from './contract/contract.component';
-import { NewComponent } from './new/new.component';
 import { AuthGuard } from '../auth-guard.service';
+import { ReportsComponent } from './reports/reports.component';
+import { ReportNewComponent } from './report-new/report-new.component';
 
 const routes: Routes = [
   {
     path: 'apps', component: LayoutComponent,
     canActivate: [AuthGuard],
     children: [
-      { path: '', redirectTo: 'contracts', pathMatch: 'full' },
-      { path: 'new', component: NewComponent },
-      { path: 'contracts', component: ContractComponent },
-      { path: 'contracts/:contractId/edit', component: NewComponent },
+      { path: '', redirectTo: 'reports', pathMatch: 'full' },
+      { path: 'reports', component: ReportsComponent },
+      { path: 'report-new', component: ReportNewComponent },
     ]
   }
 ];
