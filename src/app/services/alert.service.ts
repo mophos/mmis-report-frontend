@@ -25,6 +25,7 @@ export class AlertService {
       title: title,
       text: text,
       type: 'success',
+      timer: 1500,
       confirmButtonText: 'ตกลง'
     };
     swal(option);

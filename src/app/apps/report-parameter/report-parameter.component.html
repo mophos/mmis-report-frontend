@@ -1,0 +1,27 @@
+<div class="card">
+  <div class="card-header">
+    {{reportName}}
+  </div>
+  <div class="card-block" *ngFor="let i of parameters">
+    <div class="card-text">
+      <div class="row">
+        <div class="col-md-2">{{i.parameter_type_name}}</div>
+        <div class="col-md-10" *ngIf="i.parameter_type=='1'">
+          <app-input-textbox (onChange)="onChange($event)" [reportDetailId]="i.report_detail_id"></app-input-textbox>
+        </div>
+        <div class="col-md-10" *ngIf="i.parameter_type=='2'">
+          <app-select-warehouse (onChange)="onChange($event)" [reportDetailId]="i.report_detail_id"></app-select-warehouse>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer">
+    <div class="row">
+      <div class="col-md-10 offset-md-2">
+        <button class="btn btn-primary">
+          <clr-icon shape="printer"></clr-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -43,7 +43,7 @@
 
 
 
-<div class="card">
+<div class="card" *ngIf="isParameter">
   <div class="card-header">
     <form class="form-block">
       <div class="row form-group">
@@ -96,8 +96,10 @@
       </clr-dg-row>
     </clr-datagrid>
   </div>
-  <div class="row" style="padding-left: 20px">
-    <div class="col-md-12">
-      <button class="btn btn-success">บันทึก</button>
-    </div>
+</div>
+<div class="row" style="padding-left: 20px">
+  <div class="col-md-12">
+    <button class="btn btn-success" (click)="save()" [disabled]="!file || !reportName || (isParameter ==true && parameters.length == 0 )">บันทึก</button>
   </div>
+</div>
+<app-loading #modalLoading></app-loading>

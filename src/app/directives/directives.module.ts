@@ -14,6 +14,8 @@ import { NumberWithoutDotDirective } from './number-without-dot.directive';
 import { NumberOnlyDirective } from './number-only.directive';
 import { SelectBidtypeComponent } from './select-bidtype/select-bidtype.component';
 import { SelectBgtypeComponent } from './select-bgtype/select-bgtype.component';
+import { SelectWarehouseComponent } from './select-warehouse/select-warehouse.component';
+import { InputTextboxComponent } from './input-textbox/input-textbox.component';
 
 @NgModule({
   imports: [
@@ -33,6 +35,8 @@ import { SelectBgtypeComponent } from './select-bgtype/select-bgtype.component';
     NumberOnlyDirective,
     SelectBidtypeComponent,
     SelectBgtypeComponent,
+    SelectWarehouseComponent,
+    InputTextboxComponent,
   ],
   exports: [
     SearchVendorsComponent,
@@ -45,6 +49,8 @@ import { SelectBgtypeComponent } from './select-bgtype/select-bgtype.component';
     NumberOnlyDirective,
     SelectBidtypeComponent,
     SelectBgtypeComponent,
+    SelectWarehouseComponent,
+    InputTextboxComponent,
   ],
   providers: [StandardService]
 })

@@ -1,7 +1,8 @@
 import { AlertService } from './../../services/alert.service';
 import { ReportService } from './../../services/report.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import * as _ from 'lodash';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-report-new',
   templateUrl: './report-new.component.html',
@@ -13,14 +14,16 @@ export class ReportNewComponent implements OnInit {
   file: any;
   reportName: any;
   reportDetail: any;
-  isParameter = true;
+  isParameter = false;
   parameterTypes = [];
   parameterType: any;
   parameterName: any;
   parameters = [];
+  @ViewChild('modalLoading') public modalLoading: any;
   constructor(
     private reportService: ReportService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -62,7 +65,44 @@ export class ReportNewComponent implements OnInit {
     this.parameterName = null;
   }
 
-  removeParameter(idx) {
+  removeParameter(idx: any) {
     this.parameters.splice(idx, 1);
   }
+
+  async save() {
+    try {
+      this.modalLoading.show();
+      const header = {
+        report_name: this.reportName,
+        report_detail: this.reportDetail,
+        is_parameter: this.isParameter ? 'Y' : 'N'
+      };
+      const detail = [];
+      const rs: any = await this.reportService.saveHeader(header);
+      if (rs.ok) {
+        const reportId = rs.rows[0];
+        for (const p of this.parameters) {
+          const obj = {
+            report_id: reportId,
+            parameter_name: p.parameter_name,
+            parameter_type: +p.parameter_type
+          };
+          detail.push(obj);
+        }
+        await this.reportService.saveDetail(detail);
+        await this.reportService.uploadFile(reportId, this.file);
+        this.modalLoading.hide();
+        this.alertService.success();
+        this.router.navigate(['/apps/reports']);
+      } else {
+        this.modalLoading.hide();
+        this.alertService.error(rs.error);
+      }
+    } catch (error) {
+      this.modalLoading.hide();
+      this.alertService.error(error);
+    }
+  }
+
+
 }

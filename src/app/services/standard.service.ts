@@ -11,25 +11,25 @@ export class StandardService {
   ) { }
 
   async getTypes() {
-    let rs: any = await this.authHttp.get(`${this.url}/standard/types`)
+    const rs: any = await this.authHttp.get(`${this.url}/standard/types`)
       .toPromise();
     return rs.json();
   }
 
   async getBgTypes() {
-    let rs: any = await this.authHttp.get(`${this.url}/standard/bgtypes`)
+    const rs: any = await this.authHttp.get(`${this.url}/standard/bgtypes`)
       .toPromise();
     return rs.json();
   }
 
   async getBidTypes() {
-    let rs: any = await this.authHttp.get(`${this.url}/standard/bidtypes`)
+    const rs: any = await this.authHttp.get(`${this.url}/standard/bidtypes`)
       .toPromise();
     return rs.json();
   }
 
   async getStatus() {
-    let rs: any = await this.authHttp.get(`${this.url}/standard/status`)
+    const rs: any = await this.authHttp.get(`${this.url}/standard/status`)
       .toPromise();
     return rs.json();
   }
@@ -38,7 +38,12 @@ export class StandardService {
     const response = await this.authHttp.get(`${this.url}/standard/units/${genericId}`)
       .toPromise();
     return response.json();
+  }
 
+  async getWarehouse() {
+    const response = await this.authHttp.get(`${this.url}/standard/warehouses`)
+      .toPromise();
+    return response.json();
   }
 
 }

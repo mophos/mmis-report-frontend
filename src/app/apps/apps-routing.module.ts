@@ -4,6 +4,7 @@ import { LayoutComponent } from './layout.component';
 import { AuthGuard } from '../auth-guard.service';
 import { ReportsComponent } from './reports/reports.component';
 import { ReportNewComponent } from './report-new/report-new.component';
+import { ReportParameterComponent } from './report-parameter/report-parameter.component';
 
 const routes: Routes = [
   {
@@ -13,6 +14,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'reports', pathMatch: 'full' },
       { path: 'reports', component: ReportsComponent },
       { path: 'report-new', component: ReportNewComponent },
+      { path: 'report-parameter', component: ReportParameterComponent },
     ]
   }
 ];

@@ -15,6 +15,7 @@ import { AuthGuard } from '../auth-guard.service';
 import { ReportsComponent } from './reports/reports.component';
 import { ReportService } from '../services/report.service';
 import { ReportNewComponent } from './report-new/report-new.component';
+import { ReportParameterComponent } from './report-parameter/report-parameter.component';
 
 @NgModule({
   imports: [
@@ -31,7 +32,8 @@ import { ReportNewComponent } from './report-new/report-new.component';
   declarations: [
     LayoutComponent,
     ReportsComponent,
-    ReportNewComponent
+    ReportNewComponent,
+    ReportParameterComponent
   ],
   providers: [
     AlertService,

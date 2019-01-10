@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'cm-loading',
+  selector: 'app-loading',
   templateUrl: './loading.component.html',
   styles: []
 })
 export class LoadingComponent implements OnInit {
 
-  opened: boolean = false;
+  opened = false;
 
   constructor() { }
 
