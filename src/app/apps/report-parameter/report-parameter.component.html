@@ -10,7 +10,8 @@
           <app-input-textbox (onChange)="onChange($event)" [reportDetailId]="i.report_detail_id"></app-input-textbox>
         </div>
         <div class="col-md-10" *ngIf="i.parameter_type=='2'">
-          <app-select-warehouse (onChange)="onChange($event)" [reportDetailId]="i.report_detail_id"></app-select-warehouse>
+          <app-select-warehouse (onChange)="onChange($event)" [reportDetailId]="i.report_detail_id">
+          </app-select-warehouse>
         </div>
       </div>
     </div>
@@ -18,10 +19,13 @@
   <div class="card-footer">
     <div class="row">
       <div class="col-md-10 offset-md-2">
-        <button class="btn btn-primary">
+        <button class="btn btn-primary" (click)="preview()">
           <clr-icon shape="printer"></clr-icon>
         </button>
       </div>
     </div>
   </div>
 </div>
+
+<app-loading #modalLoading></app-loading>
+<app-html-preview #htmlPreview></app-html-preview>

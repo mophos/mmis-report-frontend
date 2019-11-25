@@ -1,14 +1,14 @@
 import { AlertService } from './../../services/alert.service';
-import { ReportService } from './../../services/report.service';
+import { ReportSystemService } from './../../services/report-system.service';
 import { Component, OnInit, ViewChild, Inject } from '@angular/core';
 import * as _ from 'lodash';
 import { Router } from '@angular/router';
 @Component({
-  selector: 'app-reports',
-  templateUrl: './reports.component.html',
-  styleUrls: ['./reports.component.css']
+  selector: 'app-report-systems',
+  templateUrl: './report-systems.component.html',
+  styles: []
 })
-export class ReportsComponent implements OnInit {
+export class ReportSystemsComponent implements OnInit {
 
   token: any;
   reports = [];
@@ -16,7 +16,7 @@ export class ReportsComponent implements OnInit {
   @ViewChild('htmlPreview') public htmlPreview: any;
   @ViewChild('modalLoading') public modalLoading: any;
   constructor(
-    private reportService: ReportService,
+    private reportSystemService: ReportSystemService,
     private alertService: AlertService,
     private router: Router,
     @Inject('API_URL') private apiUrl: string,
@@ -31,7 +31,7 @@ export class ReportsComponent implements OnInit {
   async getReports() {
     try {
       this.modalLoading.show();
-      const rs: any = await this.reportService.getReports();
+      const rs: any = await this.reportSystemService.getReports();
       this.modalLoading.hide();
       if (rs.ok) {
         this.reports = rs.rows;
@@ -50,7 +50,7 @@ export class ReportsComponent implements OnInit {
       this.alertService.confirm(`คุณต้องการที่จะลบ ${report.report_name}ใช่หรือไม่?`)
         .then(async (result) => {
           this.modalLoading.show();
-          await this.reportService.remove(report.report_id);
+          await this.reportSystemService.remove(report.report_id);
           const idx = _.findIndex(this.reports, { 'report_id': report.report_id });
           this.reports.splice(idx, 1);
           this.modalLoading.hide();

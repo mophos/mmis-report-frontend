@@ -16,6 +16,10 @@ import { ReportsComponent } from './reports/reports.component';
 import { ReportService } from '../services/report.service';
 import { ReportNewComponent } from './report-new/report-new.component';
 import { ReportParameterComponent } from './report-parameter/report-parameter.component';
+import { ReportSystemsComponent } from './report-systems/report-systems.component';
+import { ReportSystemNewComponent } from './report-system-new/report-system-new.component';
+import { ReportSystemParameterComponent } from './report-system-parameter/report-system-parameter.component';
+import { ReportSystemService } from '../services/report-system.service';
 
 @NgModule({
   imports: [
@@ -33,12 +37,16 @@ import { ReportParameterComponent } from './report-parameter/report-parameter.co
     LayoutComponent,
     ReportsComponent,
     ReportNewComponent,
-    ReportParameterComponent
+    ReportParameterComponent,
+    ReportSystemsComponent,
+    ReportSystemNewComponent,
+    ReportSystemParameterComponent
   ],
   providers: [
     AlertService,
     AuthGuard,
-    ReportService
+    ReportService,
+    ReportSystemService
   ]
 })
 export class AppsModule { }

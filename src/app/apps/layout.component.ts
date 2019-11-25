@@ -5,7 +5,7 @@ import { environment } from '../../environments/environment';
 import * as _ from 'lodash';
 
 @Component({
-  selector: 'cm-layout',
+  selector: 'app-layout',
   templateUrl: './layout.component.html',
   styles: []
 })
