@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  apiUrl: '/api/contracts',
+  apiUrl: '/api/report',
   docUrl: '/api/document',
   loginUrl: '/api/um',
   homeUrl: '/#/',
@@ -12,6 +12,6 @@ export const environment = {
   inventoryUrl: '/inventory/#/',
   materialsUrl: '/material/#/',
   umUrl: '/um/#/',
-  contractsUrl: '/',
-  reportUrl: '/reports/#/',
+  contractsUrl: '/contracts/#/',
+  reportUrl: '/',
 };
